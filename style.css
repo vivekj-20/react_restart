@@ -1,11 +1,40 @@
-#container1{
-    font-style: italic;
-    background-color: green;
+.Header {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid black
 }
-#container2{
-    font-style: oblique;
-    background-color: green;
+.Nav-bar > ul > li:hover {
+    background-color:#f0f0f0;
+    cursor: pointer;
+    transform: scale(1.05);
 }
-#container{
-    color: aqua;
+.logo {
+    padding: 10px;
+    width: 100px;
+    height: 100px;
+}
+.logo:hover{
+    transform: scale(1.05);
+}
+.Nav-bar > ul{
+    font-size: 24px;
+    display: flex;
+    list-style-type: none;
+}
+.Nav-bar > ul > li{
+    padding: 10px;
+    margin: 10px
+}
+.res-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+.res-card {
+    margin: 5px;
+    padding: 5px;
+    width: 200px;
+}
+.res-card:hover{
+    transform: scale(1.05);
+    background: linear-gradient(135deg, #ff8a00, #e52e71);
 }
