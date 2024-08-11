@@ -9,7 +9,7 @@ const Heading = () => (
 <Line />
 <Line></Line>
 <h2>{20 * 1000}</h2>
-<h1>I LOVE JAVA</h1>
+<h1>I LOVE CODING IN JAVA</h1>
 </div>
 );
 
