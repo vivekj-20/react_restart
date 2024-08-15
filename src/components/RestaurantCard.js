@@ -1,5 +1,5 @@
 import { CDN_URL } from "../utils/constant";
-
+ 
 const RestaurantCard = (props) => {
     const { resData } = props;
   //destructuring the array object
@@ -9,8 +9,9 @@ const RestaurantCard = (props) => {
       avgRating,
       cuisines,
       costForTwo,
-      deliveryTime,
-    } = resData?.data;
+    } = resData?.info;
+
+    const {deliveryTime} = resData?.info?.sla;
 
   //resData?.data uses optional chaining to safely access the data property of resData. 
   //If resData is null or undefined, the expression will return undefined instead of throwing an error. 
@@ -20,15 +21,12 @@ const RestaurantCard = (props) => {
         <img
           className="res-logo"
           alt="res-logo"
-          src={
-            {CDN_URL} +
-            cloudinaryImageId
-          }
+          src={CDN_URL + cloudinaryImageId}
         />
         <h3>{name}</h3>
         <h4>{cuisines.join(", ")}</h4>
         <h4>{avgRating} stars</h4>
-        <h4>₹{costForTwo / 100} FOR TWO</h4>
+        <h4>{costForTwo}</h4>
         <h4>{deliveryTime} minutes</h4>
       </div>
     );

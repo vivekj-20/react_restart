@@ -30,7 +30,7 @@
     flex-wrap: wrap;
 }
 .res-card {
-    margin: 5px;
+    margin: 2px;
     padding: 5px;
     width: 200px;
 }
@@ -42,3 +42,21 @@
     margin: 10px;
     cursor: pointer;
    }
+.res-logo {
+    width: 100%;
+}
+.shimmer-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.shimmer-card {
+    margin: 5px;
+    width: 200px;
+    height: 400px;
+    background-color: #f0f0f0
+}
+.login {
+    padding: 0 20px;
+    cursor: pointer;
+}
