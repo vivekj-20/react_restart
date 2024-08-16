@@ -1,9 +1,15 @@
 import {LOGO_URL} from "../utils/constant";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Header = () =>{
 
     const[buttonState,SetButtonState] = useState("Login");
+
+
+    // prints Hurry when ever the value of buttonState changes.
+    useEffect (() =>{
+        console.log("Hurry!!!")
+      },[buttonState]);
 
     return(
     <div className="Header">

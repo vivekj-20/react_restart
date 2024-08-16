@@ -9,9 +9,8 @@ const RestaurantCard = (props) => {
       avgRating,
       cuisines,
       costForTwo,
+      sla
     } = resData?.info;
-
-    const {deliveryTime} = resData?.info?.sla;
 
   //resData?.data uses optional chaining to safely access the data property of resData. 
   //If resData is null or undefined, the expression will return undefined instead of throwing an error. 
@@ -27,7 +26,7 @@ const RestaurantCard = (props) => {
         <h4>{cuisines.join(", ")}</h4>
         <h4>{avgRating} stars</h4>
         <h4>{costForTwo}</h4>
-        <h4>{deliveryTime} minutes</h4>
+        <h4>{sla?.slaString}</h4>
       </div>
     );
   };
