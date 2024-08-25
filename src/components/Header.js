@@ -1,16 +1,13 @@
 import {LOGO_URL} from "../utils/constant";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import  useOnlineStatus from "../utils/useOnlineStatus";
 
 const Header = () =>{
 
     const[buttonState,SetButtonState] = useState("Login");
-
-
     // prints Hurry when ever the value of buttonState
-    useEffect (() =>{
-        console.log("Hurry!!!")
-      },[buttonState]);
+    const onlineStatus = useOnlineStatus();
 
     return(
     <div className="Header">
@@ -20,6 +17,7 @@ const Header = () =>{
         </div>
         <div className = "Nav-bar">
             <ul>
+                <li>Online Status: {onlineStatus ? "😁" : "🥲"}</li>
                 <li>
                    <Link to="/">Home</Link>
                 </li>

@@ -1,12 +1,20 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import ReactDOM  from "react-dom/client";
 import Header from "./src/components/Header";
 import Body from "./src/components/Body";
 import { createBrowserRouter , RouterProvider , Outlet} from "react-router-dom";
 import Error from "./src/components/Error";
-import About from "./src/components/About";
 import Contact from "./src/components/Contact";
 import RestaurantMenu from "./src/components/RestaurantMenu";
+
+// Chunking
+// Code Splitting
+// Dynamic Bundling
+// lazy Loading
+// on demand loading
+// dynamix imoprt
+
+const About = lazy(() => import("./src/components/About")); // lazy loading 
 
 const AppLayout = () =>{
     return(
@@ -28,7 +36,7 @@ const router = createBrowserRouter([
         },
         {
         path:"/about",
-        element:<About/>
+        element:<Suspense fallback = {<h1>Loading....</h1>}><About/></Suspense>
         },
         {
         path: "/contact",

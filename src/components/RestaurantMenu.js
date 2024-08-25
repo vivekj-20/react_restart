@@ -1,25 +1,8 @@
-import { useEffect, useState } from "react";
-import { resUrl } from "../utils/constant";
-import { useParams } from "react-router-dom";
 import Shimmer from "./Shimmer";
-
-
+import {useRestaurantMenu} from "../utils/useCustomHooks"
 const RestaurantMenu = () =>{
-    const[MenuList,setMenuList] = useState(null);
 
-    const {resId} = useParams();
-
-    useEffect(() =>{
-        fetchMenu();
-    },[]);
-
-    const fetchMenu = async() =>{
-
-        const data = await fetch(resUrl + resId);
-        const json = await data.json();
-        setMenuList(json.data);
-        console.log(json.data);
-    };
+    const MenuList = useRestaurantMenu(); //custom Hook used to make code split 
 
     if (MenuList === null) return <Shimmer/>;
 

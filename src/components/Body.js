@@ -2,12 +2,14 @@ import RestaurantCard from "../components/RestaurantCard"
 import { useEffect, useState } from "react";
 import Shimmmer from "../components/Shimmer";
 import { Link } from "react-router-dom";
+import { useSwiggyList } from "../utils/useCustomHooks";
 
 const Body = () =>{
 
-    const [restaurantList,setrestaurantList] = useState([]);
-    const [SearchResult,SetSearchResult] = useState("");
-    const [SwiggyList,SetSwiggyList] = useState([]);
+    const [restaurantList,setrestaurantList] = useState([]); // complete restuarant list to polulate in the home screen.
+    const [SearchResult,SetSearchResult] = useState(""); // filterd search response for UI to render
+
+    const SwiggyList = useSwiggyList(); // custom hook which gives complete restaurant list , which remain unchange
 
     useEffect(() => {
       fetchData();
@@ -19,7 +21,6 @@ const Body = () =>{
       
       const json = await data.json();
       setrestaurantList(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants);
-      SetSwiggyList(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants);
       console.log(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants);
     }
 
