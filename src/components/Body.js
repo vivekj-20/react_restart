@@ -26,10 +26,10 @@ const Body = () =>{
 
     return restaurantList.length === 0 ? (<Shimmmer/>) : (
         <div className="body">  
-          <div className="filter">
-            <div className="search-bar">
-              <input type="text" className="search-Box" value={SearchResult} onChange={(e)=>SetSearchResult(e.target.value)}></input>
-                 <button onClick={() =>{console.log(SearchResult)
+          <div className="flex space-x-6 items-center">
+            <div className="m-2 p-2">
+              <input type="text" className="border border-solid border-black px-2" value={SearchResult} onChange={(e)=>SetSearchResult(e.target.value)}></input>
+                 <button className="px-2 py-2 bg-green-100 m-4 rounded-lg"onClick={() =>{console.log(SearchResult)
                   
                   const searchRes = SwiggyList.filter((res) => res.info.name.toLowerCase().includes(SearchResult.toLowerCase()));
 
@@ -39,18 +39,18 @@ const Body = () =>{
                     Search
                  </button>
             </div>
-            <button className="filter-btn" onClick={() =>
+            <button className="bg-green-100 m-14 rounded-lg" onClick={() =>
                 {const SetList = restaurantList.filter((res) => res.info.avgRating >= 4.2);        
                 setrestaurantList(SetList);
             }
             }>Filter Top Rated Restaurant</button>
-            <button className="filter-btn" onClick={() =>
+            <button className="bg-green-100 m-14 rounded-lg" onClick={() =>
                 {        
                   setrestaurantList(SwiggyList);
                 }
             }>Reset</button>
           </div>
-          <div className="res-container">   
+          <div className="flex flex-wrap">   
             {restaurantList.map((restaurant) => (
               <Link
               key={restaurant.info.id}

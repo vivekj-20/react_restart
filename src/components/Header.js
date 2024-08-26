@@ -10,13 +10,13 @@ const Header = () =>{
     const onlineStatus = useOnlineStatus();
 
     return(
-    <div className="Header">
-        <div className="logo-container">
+    <div className="flex justify-between border bg-pink-300 shadow-lg sm:bg-yellow-300 lg:bg-green-300">
+        <div className="size-20 m-4">
             <img className = "logo" src = {LOGO_URL}>
-            </img>
+            </img>  
         </div>
-        <div className = "Nav-bar">
-            <ul>
+        <div className = "flex">
+            <ul className = "flex space-x-4 items-center">
                 <li>Online Status: {onlineStatus ? "😁" : "🥲"}</li>
                 <li>
                    <Link to="/">Home</Link>
@@ -28,8 +28,10 @@ const Header = () =>{
                    <Link to="/contact">Contact Us</Link>
                 </li>
                 <li>Cart</li>
-                <button className ="login"onClick={() =>{buttonState === "Login" ? SetButtonState("Logout") : SetButtonState("Login")}}>{buttonState}</button>
-            </ul>
+                <li className="bg-blue-200 text-white font-bold py-2 px-4 rounded hover:bg-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-200 focus:ring-opacity-50">
+                    <button onClick={() =>{buttonState === "Login" ? SetButtonState("Logout") : SetButtonState("Login")}}>{buttonState}</button>
+                </li>
+                </ul>
         </div>
     </div>
     )
