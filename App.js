@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense , useEffect , useState} from "react";
 import ReactDOM  from "react-dom/client";
 import Header from "./src/components/Header";
 import Body from "./src/components/Body";
@@ -6,6 +6,7 @@ import { createBrowserRouter , RouterProvider , Outlet} from "react-router-dom";
 import Error from "./src/components/Error";
 import Contact from "./src/components/Contact";
 import RestaurantMenu from "./src/components/RestaurantMenu";
+import userInfo from "./src/utils/userInfo";
 
 // Chunking
 // Code Splitting
@@ -16,12 +17,30 @@ import RestaurantMenu from "./src/components/RestaurantMenu";
 
 const About = lazy(() => import("./src/components/About")); // lazy loading 
 
+
 const AppLayout = () =>{
+
+    const[userName,setuserName] = useState();
+
+    useEffect(() => {
+
+        //Authentication api called
+    
+        const userdata = {
+            name : "Vivek"
+        };
+        
+        setuserName(userdata.name);
+    
+    },[])
+
     return(
-    <div>    
-        <Header/>
-        <Outlet/>
-    </div>
+    <userInfo.Provider value={{loggedUser : userName , setuserName}}>
+        <div>    
+            <Header/>
+            <Outlet/>
+        </div>
+    </userInfo.Provider>    
 )
 }
 

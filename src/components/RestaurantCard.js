@@ -31,4 +31,24 @@ const RestaurantCard = (props) => {
     );
   };
 
+  //Higher Order Component
+  export const getDiscountLabel = (RestaurantCard) =>{
+    return(props) =>{
+      const { resData } = props;
+      const {
+         header,subHeader   
+      } = resData?.info?.aggregatedDiscountInfoV3;
+      console.log(header);
+      return (
+        <div>
+          <label className="absolute border border-black bg-lime-600 text-slate-50 m-2 p-2 rounded-xl">
+            {header}
+             <div className="text-xs">{subHeader}</div>    
+          </label>
+          <RestaurantCard {...props}/>
+        </div>
+      );
+    };
+  };
+
   export default RestaurantCard;

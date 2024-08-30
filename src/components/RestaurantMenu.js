@@ -1,26 +1,34 @@
 import Shimmer from "./Shimmer";
 import {useRestaurantMenu} from "../utils/useCustomHooks"
+import RestaurantCategory from "./RestaurantCategory"
+import { useState } from "react";
 const RestaurantMenu = () =>{
 
-    const MenuList = useRestaurantMenu(); //custom Hook used to make code split 
+    const MenuList = useRestaurantMenu(); //custom Hook used to make code split
+
+    const [showItem,setshowItem] = useState(0);
 
     if (MenuList === null) return <Shimmer/>;
 
     const {name,costForTwoMessage,cuisines,avgRating } = MenuList?.cards[2]?.card?.card?.info;
-
-    const {itemCards} = MenuList?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[4]?.card?.card;
-
+    
+    const categories = MenuList?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+    (e) =>
+        e.card?.["card"]?.["@type"] === 
+        "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+    );
     return(
-        <div>
-            <h1>{name} - {costForTwoMessage}</h1>
-            <h2>{cuisines.join(",")}</h2>
+        <div className="text-center">
+            <h1 className="text-2xl font-bold m-2 p-2">{name}</h1>
+            <h2 className="font-semibold">{cuisines.join(",")}</h2>
             <h4>{avgRating}</h4>
             <h3>MENU</h3>
-            <ul>
-                {itemCards.map((item) => 
-                    <li key={item.card.info.id}>{item.card.info.name} - {"Rs ."} {item.card.info.price == null ? item.card.info.defaultPrice/100 : item.card.info.price/100}</li>
-                )}
-            </ul>
+            {categories.map((category , index) => (
+                <RestaurantCategory key={category?.card?.card?.title} data={category} 
+                clickToggle={index === showItem ? true : false}
+                setshowItem = {() =>{setshowItem(index)}}
+                />
+            ))}
         </div>
     )
 };
