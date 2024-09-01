@@ -9,6 +9,11 @@ const Body = () =>{
 
     const [restaurantList,setrestaurantList] = useState([]); // complete restuarant list to polulate in the home screen.
     const [SearchResult,SetSearchResult] = useState(""); // filterd search response for UI to render
+    const [passwordType,setpasswordType] = useState(false);
+
+    const viewhandler = () => {
+         setpasswordType(!passwordType)
+    }
     
     const SwiggyList = useSwiggyList(); // custom hook which gives complete restaurant list , which remain unchange
      
@@ -56,10 +61,11 @@ const Body = () =>{
             }>Reset</button>
             <div>
                 <label>userIdName</label> 
-                <input type="text" className="border border-black m-2 p-2 rounded-lg"
+                <input type={passwordType ? "text" : "password"} className="border border-black m-2 p-2 rounded-lg"
                   value={loggedUser}
                   onChange={(e) => setuserName(e.target.value)}
                   ></input>
+                  <button onClick={viewhandler} className="cursor-pointer">👁️</button>
             </div>
           </div>
           <div className="flex flex-wrap">   

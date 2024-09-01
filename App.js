@@ -2,11 +2,14 @@ import React, { lazy, Suspense , useEffect , useState} from "react";
 import ReactDOM  from "react-dom/client";
 import Header from "./src/components/Header";
 import Body from "./src/components/Body";
+import Cart from "./src/components/Cart";
 import { createBrowserRouter , RouterProvider , Outlet} from "react-router-dom";
 import Error from "./src/components/Error";
 import Contact from "./src/components/Contact";
 import RestaurantMenu from "./src/components/RestaurantMenu";
 import userInfo from "./src/utils/userInfo";
+import { Provider } from "react-redux";
+import appStore from "./src/utils/appStore";
 
 // Chunking
 // Code Splitting
@@ -35,12 +38,14 @@ const AppLayout = () =>{
     },[])
 
     return(
-    <userInfo.Provider value={{loggedUser : userName , setuserName}}>
+    <Provider store={appStore}>
+        <userInfo.Provider value={{loggedUser : userName , setuserName}}>
         <div>    
             <Header/>
             <Outlet/>
         </div>
-    </userInfo.Provider>    
+        </userInfo.Provider>
+    </Provider>    
 )
 }
 
@@ -65,6 +70,10 @@ const router = createBrowserRouter([
         path: "/restaurants/:resId",
         element: <RestaurantMenu />,
         },
+        {
+        path: "/Cart",
+        element: <Cart />,
+        }
      ],
      errorElement:<Error />,
     },
