@@ -29,7 +29,6 @@ const Body = () =>{
       
       const json = await data.json();
       setrestaurantList(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants);
-      console.log(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants);
     }
 
     const {loggedUser , setuserName} = useContext(userInfo);

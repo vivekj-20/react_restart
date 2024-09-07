@@ -25,7 +25,7 @@ const Cart = () =>{
             Clear Cart
         </button>
            {storeItem?.length === 0 && (
-          <h1> Cart is empty. Add Items to the cart!</h1>
+              <h1> Cart is empty. Add Items to the cart!</h1>
            )}
             <ItemCategory dish={storeItem}/>
           </div>     
